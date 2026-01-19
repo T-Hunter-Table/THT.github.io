@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hunter's Table | Where The Game Meets The Flame</title>
+    <meta name="description"
+        content="A fire-born, field-to-plate concept rooted in the bush, in patience, and in respect for the hunt.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --accent-fire: #e25822;
+            --accent-ember: #ff4500;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Outfit', sans-serif;
+            --glass-bg: rgba(20, 20, 20, 0.8);
+            --border-glow: rgba(226, 88, 34, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Video Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            object-fit: cover;
+            filter: brightness(0.4) contrast(1.1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(10, 10, 10, 0.8) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .logo-img {
+            max-width: 250px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 15px rgba(226, 88, 34, 0.4));
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--accent-fire);
+            text-transform: uppercase;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        /* Description Section */
+        .section-padding {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+        }
+
+        .about-text strong {
+            color: var(--text-light);
+            font-family: var(--font-serif);
+        }
+
+        /* Representation Cards */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pillar-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-glow);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-fire);
+            box-shadow: 0 10px 30px rgba(226, 88, 34, 0.2);
+        }
+
+        .pillar-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-fire);
+        }
+
+        .pillar-card p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* Food Style Section */
+        .food-section {
+            background: linear-gradient(180deg, var(--primary-bg) 0%, #150a05 100%);
+            border-top: 1px solid #221108;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .food-list {
+            list-style: none;
+        }
+
+        .food-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-family: var(--font-serif);
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .food-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-fire);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-fire);
+        }
+
+        .food-quote {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--text-light);
+            font-style: italic;
+            border-left: 4px solid var(--accent-fire);
+            padding-left: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            background: var(--primary-bg);
+            padding-bottom: 8rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            margin: 1rem;
+            background: transparent;
+            border: 2px solid var(--accent-fire);
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: var(--font-serif);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-fire);
+            box-shadow: 0 0 20px rgba(226, 88, 34, 0.4);
+        }
+
+        .social-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .social-link:hover {
+            color: var(--accent-fire);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: #050505;
+            border-top: 1px solid #1a1a1a;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        footer a {
+            color: var(--accent-fire);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .food-quote {
+                font-size: 1.8rem;
+            }
+
+            .section-padding {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="Videos/Video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="Images/The_Hunter_s_Table_Logo-removebg-preview Log Res..png" alt="The Hunter's Table Logo"
+                class="logo-img">
+            <h1>The Hunter's Table</h1>
+            <p>Where The Game Meets The Flame</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="about-text">
+                <p>
+                    It’s a <strong>fire-born, field-to-plate concept</strong> rooted in the bush, in patience, and in
+                    respect for the hunt.
+                    The Hunter’s Table tells a story most people have forgotten: that food once required <strong>skill,
+                        responsibility, and gratitude</strong>, not just an app and a delivery driver.
+                </p>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <h3>Wild, Honest Food</h3>
+                    <p>Slow-cooked, open-fire meals inspired by the bush, hunting culture, and traditional techniques.
+                    </p>
+                </div>
+                <div class="pillar-card">
+                    <h3>From Harvest to Plate</h3>
+                    <p>The mindset of knowing where food comes from, honouring the animal, and cooking with intention.
+                    </p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Masculine Warmth</h3>
+                    <p>Fire, smoke, iron pans, knives, wood, and hands that work.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Spiritual Grounding</h3>
+                    <p>Beginning with Bismillāh, ending with gratitude. Food as ibādah, not just consumption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding food-section">
+        <div class="container">
+            <div class="food-grid">
+                <div>
+                    <ul class="food-list">
+                        <li>Fire-grilled meats</li>
+                        <li>Long-simmered stews</li>
+                        <li>Flatbreads cooked on hot steel</li>
+                        <li>Bone broth, wild herbs, simple sides</li>
+                    </ul>
+                </div>
+                <div>
+                    <blockquote class="food-quote">
+                        "Not fancy.<br>Not rushed.<br>Not fake."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container" style="text-align: center;">
+            <div class="about-text">
+                <p>When people eat from The Hunter’s Table, they’re stepping into a <strong>campfire moment</strong> in
+                    the middle of the city. A memory of how men once fed families and tribes. A pause from processed
+                    life.</p>
+            </div>
+            <h2 style="font-family: var(--font-serif); margin-bottom: 2rem; color: var(--accent-fire);">You let the
+                smoke speak.</h2>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <a href="tel:0487553520" class="cta-button">Call 0487 553 520</a>
+            <a href="https://www.instagram.com/thehunterstable.au" target="_blank" class="social-link">Follow us on
+                Instagram @thehunterstable.au</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 The Hunter's Table</p>
+        <p>Designed by <a href="https://medohamdani.github.io/">Medo Hamdani</a> | <a href="https://bizmapper.github.io"
+                target="_blank">BizMapper</a></p>
+    </footer>
+
+</body>
+
+</html>
